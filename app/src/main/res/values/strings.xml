@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Weekly Specials</string>
+    <string name="weekly_specials">Weekly Specials</string>
+    <string name="search">Search</string>
+    <string name="enter_item_to_search">Enter item to search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="woolies_search_results">Woolies Search Results</string>
+    <string name="view_shopping_list">View Shopping List</string>
+    <string name="item_details">Item Details</string>
+    <string name="special_price">Special Price</string>
+    <string name="todo">TODO</string>
+    <string name="original_price">Original price</string>
+    <string name="_0_00_100g">$0.00 / 100G</string>
+    <string name="savings">Savings</string>
+    <string name="woolies">Check Woolies</string>
+    <string name="coles">Check Coles</string>
+    <string name="other_shop">Other Shop</string>
+    <string name="enter_item">Enter item</string>
+    <string name="add_to_list">Add to List</string>
+    <string name="search_for_new_item">Search for New Item</string>
+</resources>
