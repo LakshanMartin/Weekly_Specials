@@ -3,27 +3,27 @@ package curtin.edu.au.weeklyspecials.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingListSingleton
+public class WooliesListSingleton
 {
-    private static ShoppingListSingleton instance = null;
-    private List<String> shoppingList;
+    private static WooliesListSingleton instance = null;
+    private List<ItemData> shoppingList;
 
-    private ShoppingListSingleton()
+    private WooliesListSingleton()
     {
         shoppingList = new ArrayList<>();
     }
 
-    public static ShoppingListSingleton getInstance()
+    public static WooliesListSingleton getInstance()
     {
         if(instance == null)
         {
-            instance = new ShoppingListSingleton();
+            instance = new WooliesListSingleton();
         }
 
         return instance;
     }
 
-    public void addItem(String newItem)
+    public void addItem(ItemData newItem)
     {
         shoppingList.add(newItem);
     }
@@ -45,7 +45,7 @@ public class ShoppingListSingleton
         return isEmpty;
     }
 
-    public List<String> getShoppingList()
+    public List<ItemData> getShoppingList()
     {
         return shoppingList;
     }

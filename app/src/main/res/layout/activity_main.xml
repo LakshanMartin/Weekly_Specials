@@ -58,9 +58,27 @@
         android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/btnViewList"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtVSpecials"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVSpecials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Specials Only: "
+        app:layout_constraintStart_toEndOf="@+id/editTSearchEntry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/switchSpecial"/>
+
+    <Switch
+        android:id="@+id/switchSpecial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        app:layout_constraintStart_toEndOf="@id/editTSearchEntry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnViewList"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,9 @@
     <string name="woolies">Check Woolies</string>
     <string name="coles">Check Coles</string>
     <string name="other_shop">Other Shop</string>
-    <string name="enter_item">Enter item</string>
-    <string name="add_to_list">Add to List</string>
+    <string name="enter_item">Enter item description</string>
+    <string name="add_to_list">+</string>
     <string name="search_for_new_item">Search for New Item</string>
+    <string name="cost_optional">Cost</string>
+    <string name="qty">Qty</string>
 </resources>

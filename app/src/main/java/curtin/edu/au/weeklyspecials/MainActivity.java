@@ -9,15 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
-import curtin.edu.au.weeklyspecials.Data.ShoppingListSingleton;
+import curtin.edu.au.weeklyspecials.Data.WooliesListSingleton;
 
 public class MainActivity extends AppCompatActivity
 {
     private static String TAG = "MAIN ACTIVITY";
     private EditText edTxtSearchInput;
-    private ShoppingListSingleton shoppingList = ShoppingListSingleton.getInstance();
+    private WooliesListSingleton shoppingList = WooliesListSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,10 +28,10 @@ public class MainActivity extends AppCompatActivity
 
         //INSTANTIATE UI
         edTxtSearchInput = (EditText)findViewById(R.id.editTSearchEntry);
+        final Switch switchSpecials = (Switch) findViewById(R.id.switchSpecial);
         Button btnWoolies = (Button) findViewById(R.id.btnWooliesSearch);
         Button btnColes = (Button) findViewById(R.id.btnColesSearch);
         Button btnShoppingList = (Button)findViewById(R.id.btnViewList);
-
 
         //ACTIVATE Button
         btnWoolies.setOnClickListener(new View.OnClickListener()
@@ -44,8 +45,10 @@ public class MainActivity extends AppCompatActivity
                             WebViewWooliesActivity.class);
 
                     String itemSearch = edTxtSearchInput.getText().toString();
+                    Boolean switchState = switchSpecials.isChecked();
 
                     intent.putExtra("ITEM", itemSearch);
+                    intent.putExtra("SPECIALS", switchState);
                     startActivity(intent);
                 }
                 else
@@ -68,8 +71,10 @@ public class MainActivity extends AppCompatActivity
                             WebViewColesActivity.class);
 
                     String itemSearch = edTxtSearchInput.getText().toString();
+                    Boolean switchState = switchSpecials.isChecked();
 
                     intent.putExtra("ITEM", itemSearch);
+                    intent.putExtra("SPECIALS", switchState);
                     startActivity(intent);
                 }
                 else
@@ -99,10 +104,10 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    for(String item : shoppingList.getShoppingList())
+                    /*for(String item : shoppingList.getShoppingList())
                     {
                         Log.d("Item", item);
-                    }
+                    }*/
                 }
             }
         });

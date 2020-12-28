@@ -28,8 +28,10 @@ public class WebViewColesActivity extends AppCompatActivity
         //Retrieve intent info - item to search
         Intent intent = getIntent();
         final String toSearch = intent.getExtras().getString("ITEM");
+        final boolean checkSpecials = intent.getExtras().getBoolean("SPECIALS");
 
         Log.d(TAG, toSearch);
+        Log.d(TAG, String.valueOf(checkSpecials));
 
         //INSTANTIATE UI
         webView = (WebView)findViewById(R.id.webColesPage);
@@ -40,7 +42,16 @@ public class WebViewColesActivity extends AppCompatActivity
         webView.setWebViewClient(new WebViewClient());
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        url = "https://shop.coles.com.au/a/riverton/specials/search/" + toSearch;
+
+        if(checkSpecials)
+        {
+            url = "https://shop.coles.com.au/a/riverton/specials/search/" + toSearch;
+        }
+        else
+        {
+            url = "https://shop.coles.com.au/a/riverton/everything/search/" + toSearch;
+        }
+
         webView.loadUrl(url);
 
         //INITIALISE BUTTONS
@@ -53,6 +64,7 @@ public class WebViewColesActivity extends AppCompatActivity
                 Intent intent = new Intent(WebViewColesActivity.this,
                         WebViewWooliesActivity.class);
                 intent.putExtra("ITEM", toSearch);
+                intent.putExtra("SPECIALS", checkSpecials);
 
                 WebViewColesActivity.this.finish();
                 startActivity(intent);

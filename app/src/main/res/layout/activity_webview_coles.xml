@@ -23,16 +23,43 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:hint="@string/enter_item"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionNext"
         android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/btnOtherShop"
+        app:layout_constraintEnd_toStartOf="@+id/editTItemCost"
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/editTItemCost"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hint="@string/cost_optional"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/editTAddItem"
+        app:layout_constraintEnd_toStartOf="@+id/editTQuantity"
+        app:layout_constraintBottom_toTopOf="@+id/btnReturn"/>
+
+    <EditText
+        android:id="@+id/editTQuantity"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hint="@string/qty"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/editTItemCost"
         app:layout_constraintEnd_toStartOf="@+id/btnAddToList"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/btnReturn"/>
 
     <Button
         android:id="@+id/btnAddToList"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="@string/add_to_list"
         app:layout_constraintBottom_toTopOf="@+id/btnReturn"
