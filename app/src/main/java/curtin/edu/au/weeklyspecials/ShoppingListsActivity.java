@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -23,6 +25,7 @@ public class ShoppingListsActivity extends AppCompatActivity
         TabItem wooliesTab = findViewById(R.id.wooliesTab);
         TabItem colesTab = findViewById(R.id.colesTab);
         final ViewPager viewPager = findViewById(R.id.viewPager);
+        Button btnReturn = (Button)findViewById(R.id.btnReturn);
 
         PagerAdapter pagerAdapter =
                 new PagerAdapter(getSupportFragmentManager(),
@@ -48,6 +51,15 @@ public class ShoppingListsActivity extends AppCompatActivity
             public void onTabReselected(TabLayout.Tab tab)
             {
 
+            }
+        });
+
+        btnReturn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
             }
         });
     }
