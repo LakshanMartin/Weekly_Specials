@@ -43,6 +43,8 @@ public class WebViewWooliesActivity extends AppCompatActivity
         //INSTANTIATE UI
         webView = (WebView)findViewById(R.id.webWooliesPage);
         itemDesc = (EditText)findViewById(R.id.editTAddItem);
+        itemCost = (EditText)findViewById(R.id.editTItemCost);
+        itemQty = (EditText)findViewById(R.id.editTQuantity);
         Button btnAddToList = (Button) findViewById(R.id.btnAddToList);
         Button btnColes = (Button) findViewById(R.id.btnOtherShop);
         Button btnNewSearch = (Button) findViewById(R.id.btnReturn);
@@ -96,7 +98,7 @@ public class WebViewWooliesActivity extends AppCompatActivity
             {
                 Toast toast;
                 String text;
-                Double cost;
+                double cost;
                 int qty;
 
                 /***
@@ -114,15 +116,12 @@ public class WebViewWooliesActivity extends AppCompatActivity
                 if(!TextUtils.isEmpty(itemDesc.getText()))
                 {
                     //VALIDATION - cost input
-                    if(TextUtils.isEmpty(itemCost.getText()))
-                    {
-                        cost = 0.00;
-                    }
-                    else
+                    if(!TextUtils.isEmpty(itemCost.getText()))
                     {
                         try
                         {
                             cost = Double.parseDouble(itemCost.getText().toString());
+                            itemCost.setText(null);
                         }
                         catch (NumberFormatException nfe)
                         {
@@ -131,6 +130,10 @@ public class WebViewWooliesActivity extends AppCompatActivity
                             toast.show();
                             cost = 0.00;
                         }
+                    }
+                    else
+                    {
+                        cost = 0.00;
                     }
 
                     //VALIDATION - qty input
@@ -143,6 +146,7 @@ public class WebViewWooliesActivity extends AppCompatActivity
                         try
                         {
                             qty = Integer.parseInt(itemQty.getText().toString());
+                            itemQty.setText(null);
                         }
                         catch (NumberFormatException nfe)
                         {

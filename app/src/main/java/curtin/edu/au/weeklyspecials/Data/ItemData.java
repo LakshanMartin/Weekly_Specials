@@ -20,13 +20,13 @@ public class ItemData
         return desc;
     }
 
-    public double getCost()
+    public String getCost()
     {
-        return cost;
+        return Double.toString(cost);
     }
 
-    public int getQty()
+    public String getQty()
     {
-        return qty;
+        return Integer.toString(qty);
     }
 }

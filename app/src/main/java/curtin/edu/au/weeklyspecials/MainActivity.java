@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity
 {
     private static String TAG = "MAIN ACTIVITY";
     private EditText edTxtSearchInput;
-    private WooliesListSingleton shoppingList = WooliesListSingleton.getInstance();
+    private WooliesListSingleton wooliesList = WooliesListSingleton.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        if(!shoppingList.getShoppingList().isEmpty())
+        if(!wooliesList.getShoppingList().isEmpty())
         {
             btnShoppingList.setVisibility(View.VISIBLE);
         }
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                if(shoppingList.getShoppingList().isEmpty())
+                if(wooliesList.getShoppingList().isEmpty())
                 {
                     String text = "ERROR: List is currently empty...";
                     Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
@@ -104,10 +103,10 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
-                    /*for(String item : shoppingList.getShoppingList())
-                    {
-                        Log.d("Item", item);
-                    }*/
+                    Intent intent = new Intent(MainActivity.this,
+                            ShoppingListsActivity.class);
+
+                    startActivity(intent);
                 }
             }
         });

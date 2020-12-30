@@ -18,7 +18,11 @@
     <string name="other_shop">Other Shop</string>
     <string name="enter_item">Enter item description</string>
     <string name="add_to_list">+</string>
-    <string name="search_for_new_item">Search for New Item</string>
+    <string name="return_to_main_screen">Return to Main Screen</string>
     <string name="cost_optional">Cost</string>
     <string name="qty">Qty</string>
+    <string name="shopping_lists">Shopping Lists</string>
+    <string name="woolies_list">Woolies List</string>
+    <string name="coles_list">Coles List</string>
+    <string name="item_description">Item Description</string>
 </resources>

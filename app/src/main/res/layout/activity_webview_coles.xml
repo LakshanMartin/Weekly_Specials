@@ -79,7 +79,7 @@
         android:id="@+id/btnReturn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/search_for_new_item"
+        android:text="@string/return_to_main_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnOtherShop"
         app:layout_constraintWidth_default="percent"
