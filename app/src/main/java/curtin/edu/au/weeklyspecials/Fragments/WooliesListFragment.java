@@ -22,7 +22,7 @@ import curtin.edu.au.weeklyspecials.R;
 public class WooliesListFragment extends Fragment
 {
     //RETRIEVE shopping list
-    WooliesListSingleton wooliesList = WooliesListSingleton.getInstance();
+    private WooliesListSingleton wooliesList = WooliesListSingleton.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

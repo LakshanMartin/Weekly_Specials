@@ -43,7 +43,7 @@
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/editTAddItem"
         app:layout_constraintEnd_toStartOf="@+id/editTQuantity"
-        app:layout_constraintBottom_toTopOf="@+id/btnReturn"/>
+        app:layout_constraintBottom_toTopOf="@+id/btnViewList"/>
 
     <EditText
         android:id="@+id/editTQuantity"
@@ -57,14 +57,14 @@
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/editTItemCost"
         app:layout_constraintEnd_toStartOf="@+id/btnAddToList"
-        app:layout_constraintBottom_toTopOf="@id/btnReturn"/>
+        app:layout_constraintBottom_toTopOf="@id/btnViewList"/>
 
     <Button
         android:id="@+id/btnAddToList"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="@string/add_to_list"
-        app:layout_constraintBottom_toTopOf="@+id/btnReturn"
+        app:layout_constraintBottom_toTopOf="@+id/btnViewList"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
@@ -78,10 +78,10 @@
         app:layout_constraintWidth_percent="0.40" />
 
     <Button
-        android:id="@+id/btnReturn"
+        android:id="@+id/btnViewList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/return_to_main_screen"
+        android:text="@string/view_shopping_list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnOtherShop"
         app:layout_constraintWidth_default="percent"

@@ -47,7 +47,7 @@ public class WebViewWooliesActivity extends AppCompatActivity
         itemQty = (EditText)findViewById(R.id.editTQuantity);
         Button btnAddToList = (Button) findViewById(R.id.btnAddToList);
         Button btnColes = (Button) findViewById(R.id.btnOtherShop);
-        Button btnNewSearch = (Button) findViewById(R.id.btnReturn);
+        Button btnViewList = (Button) findViewById(R.id.btnViewList);
 
         //WebView setup
         webView.setWebViewClient(new WebViewClient());
@@ -82,12 +82,27 @@ public class WebViewWooliesActivity extends AppCompatActivity
             }
         });
 
-        btnNewSearch.setOnClickListener(new View.OnClickListener()
+        btnViewList.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                finish();
+                if(shoppingList.getShoppingList().isEmpty())
+                {
+                    String text = "ERROR: List is currently empty...";
+                    Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
+                {
+                    Intent intent = new Intent(WebViewWooliesActivity.this,
+                            ShoppingListsActivity.class);
+
+                    //LIST_ID sets shopping list tab to position 0, which is the Woolies tab
+                    intent.putExtra("LIST_ID", 0);
+
+                    startActivity(intent);
+                }
             }
         });
 

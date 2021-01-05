@@ -3,9 +3,8 @@ package curtin.edu.au.weeklyspecials;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -14,6 +13,8 @@ import curtin.edu.au.weeklyspecials.Helpers.PagerAdapter;
 
 public class ShoppingListsActivity extends AppCompatActivity
 {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,17 +22,22 @@ public class ShoppingListsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_lists);
 
-        TabLayout tabLayout = findViewById(R.id.tabBar);
+        tabLayout = findViewById(R.id.tabBar);
         TabItem wooliesTab = findViewById(R.id.wooliesTab);
         TabItem colesTab = findViewById(R.id.colesTab);
-        final ViewPager viewPager = findViewById(R.id.viewPager);
-        Button btnReturn = (Button)findViewById(R.id.btnReturn);
+        viewPager = findViewById(R.id.viewPager);
 
         PagerAdapter pagerAdapter =
                 new PagerAdapter(getSupportFragmentManager(),
                         tabLayout.getTabCount());
 
         viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        //RETRIEVE Intent to identify which shopping list to show
+        Intent intent = getIntent();
+        int listID = intent.getExtras().getInt("LIST_ID");
+        setActiveTab(listID);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
         {
@@ -53,14 +59,10 @@ public class ShoppingListsActivity extends AppCompatActivity
 
             }
         });
+    }
 
-        btnReturn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                finish();
-            }
-        });
+    private void setActiveTab(int listID)
+    {
+        viewPager.setCurrentItem(listID);
     }
 }

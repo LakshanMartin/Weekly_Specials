@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(MainActivity.this,
                             ShoppingListsActivity.class);
 
+                    //Defaults to the Woolies list tab first
+                    intent.putExtra("LIST_ID", 0);
+
                     startActivity(intent);
                 }
             }
