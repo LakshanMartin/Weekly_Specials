@@ -31,6 +31,12 @@ public class ColesListFragment extends Fragment
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_coles_list, container, false);
 
+        //Initialise Total Cost value
+        TextView txtVTotalCost = (TextView)view.findViewById(R.id.txtVTotalCost);
+        String totalCost = getActivity().getResources().getString(
+                R.string.total_cost, colesList.getTotalCost());
+        txtVTotalCost.setText(totalCost);
+
         buildRecyclerView(view);
 
         return view;

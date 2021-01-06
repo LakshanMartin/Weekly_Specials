@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import curtin.edu.au.weeklyspecials.Data.ItemData;
@@ -45,8 +46,9 @@ public class WebViewWooliesActivity extends AppCompatActivity
         itemDesc = (EditText)findViewById(R.id.editTAddItem);
         itemCost = (EditText)findViewById(R.id.editTItemCost);
         itemQty = (EditText)findViewById(R.id.editTQuantity);
-        Button btnAddToList = (Button) findViewById(R.id.btnAddToList);
+        ImageButton imgBAddToList = (ImageButton) findViewById(R.id.imgBAddToList);
         Button btnColes = (Button) findViewById(R.id.btnOtherShop);
+        ImageButton imgBNewSearch = (ImageButton)findViewById(R.id.imgBNewSearch);
         Button btnViewList = (Button) findViewById(R.id.btnViewList);
 
         //WebView setup
@@ -82,6 +84,15 @@ public class WebViewWooliesActivity extends AppCompatActivity
             }
         });
 
+        imgBNewSearch.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+            }
+        });
+
         btnViewList.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -106,7 +117,7 @@ public class WebViewWooliesActivity extends AppCompatActivity
             }
         });
 
-        btnAddToList.setOnClickListener(new View.OnClickListener()
+        imgBAddToList.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)

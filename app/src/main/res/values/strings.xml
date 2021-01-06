@@ -6,7 +6,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="woolies_search_results">Woolies Search Results</string>
-    <string name="view_shopping_list">View Shopping List</string>
+    <string name="view_shopping_list">Shopping List</string>
     <string name="item_details">Item Details</string>
     <string name="special_price">Special Price</string>
     <string name="todo">TODO</string>
@@ -25,4 +25,5 @@
     <string name="woolies_list">Woolies List</string>
     <string name="coles_list">Coles List</string>
     <string name="item_description">Item Description</string>
+    <string name="total_cost">Total Cost: $%.2f</string>
 </resources>

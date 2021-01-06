@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:hint="@string/cost_optional"
+
         android:inputType="numberDecimal"
         android:imeOptions="actionNext"
         android:textAlignment="center"
@@ -56,14 +57,14 @@
         android:textAlignment="center"
         android:autofillHints=""
         app:layout_constraintStart_toEndOf="@+id/editTItemCost"
-        app:layout_constraintEnd_toStartOf="@+id/btnAddToList"
+        app:layout_constraintEnd_toStartOf="@+id/imgBAddToList"
         app:layout_constraintBottom_toTopOf="@id/btnViewList"/>
 
-    <Button
-        android:id="@+id/btnAddToList"
+    <ImageButton
+        android:id="@+id/imgBAddToList"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="@string/add_to_list"
+        android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toTopOf="@+id/btnViewList"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -77,15 +78,27 @@
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.40" />
 
+    <ImageButton
+        android:id="@+id/imgBNewSearch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@android:drawable/ic_menu_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnOtherShop"
+        app:layout_constraintTop_toBottomOf="@+id/editTAddItem"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.20" />
+
+
     <Button
         android:id="@+id/btnViewList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/view_shopping_list"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnOtherShop"
+        app:layout_constraintStart_toEndOf="@+id/imgBNewSearch"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.60" />
+        app:layout_constraintWidth_percent="0.40" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
