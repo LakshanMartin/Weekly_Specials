@@ -7,11 +7,13 @@ public class WooliesListSingleton
 {
     private static WooliesListSingleton instance = null;
     private List<ItemData> shoppingList;
+    private int item_ID;
     private double totalCost;
 
     private WooliesListSingleton()
     {
         shoppingList = new ArrayList<>();
+        this.item_ID = 0;
         this.totalCost = 0.0;
     }
 

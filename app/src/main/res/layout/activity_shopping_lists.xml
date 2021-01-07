@@ -43,7 +43,29 @@
         app:layout_constraintTop_toBottomOf="@+id/tabBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveLists"/>
+
+    <Button
+        android:id="@+id/btnLoadLists"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/load_shopping_lists"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/btnSaveLists"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save_shopping_lists"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnLoadLists"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

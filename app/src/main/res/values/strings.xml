@@ -26,4 +26,6 @@
     <string name="coles_list">Coles List</string>
     <string name="item_description">Item Description</string>
     <string name="total_cost">Total Cost: $%.2f</string>
+    <string name="save_shopping_lists">Save Lists</string>
+    <string name="load_shopping_lists">Load Lists</string>
 </resources>
