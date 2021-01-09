@@ -28,4 +28,5 @@
     <string name="total_cost">Total Cost: $%.2f</string>
     <string name="save_shopping_lists">Save Lists</string>
     <string name="load_shopping_lists">Load Lists</string>
+    <string name="clear_list">Clear Lists</string>
 </resources>

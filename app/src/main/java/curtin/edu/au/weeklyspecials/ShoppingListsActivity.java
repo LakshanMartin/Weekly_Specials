@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,9 +25,10 @@ public class ShoppingListsActivity extends AppCompatActivity
 {
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private Button saveLists, loadLists;
+    private Button saveLists, clearLists;
     private WooliesListSingleton wooliesData = WooliesListSingleton.getInstance();
     private ColesListSingleton colesData = ColesListSingleton.getInstance();
+    private ShoppingListDb db = new ShoppingListDb();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,8 +40,8 @@ public class ShoppingListsActivity extends AppCompatActivity
         TabItem wooliesTab = findViewById(R.id.wooliesTab);
         TabItem colesTab = findViewById(R.id.colesTab);
         viewPager = findViewById(R.id.viewPager);
+        clearLists = findViewById(R.id.btnClearList);
         saveLists = (Button)findViewById(R.id.btnSaveLists);
-        loadLists = (Button)findViewById(R.id.btnLoadLists);
 
         PagerAdapter pagerAdapter =
                 new PagerAdapter(getSupportFragmentManager(),
@@ -52,6 +54,9 @@ public class ShoppingListsActivity extends AppCompatActivity
         Intent intent = getIntent();
         int listID = intent.getExtras().getInt("LIST_ID");
         setActiveTab(listID);
+
+        //Open database
+        db.open(this);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
         {
@@ -74,16 +79,34 @@ public class ShoppingListsActivity extends AppCompatActivity
             }
         });
 
+        clearLists.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //Clear database and existing lists
+                db.deleteRecords();
+                wooliesData.freshList();
+                colesData.freshList();
+
+                //Refresh activity with fresh lists
+                finish();
+                startActivity(getIntent());
+            }
+        });
+
         saveLists.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                String text;
+
+                //Clear existing records
+                db.deleteRecords();
+
                 if(!wooliesData.isEmpty() || !colesData.isEmpty())
                 {
-                    ShoppingListDb db = new ShoppingListDb();
-                    db.load(getApplicationContext());
-
                     if(!wooliesData.isEmpty())
                     {
                         List<ItemData> wooliesList = wooliesData.getShoppingList();
@@ -93,7 +116,8 @@ public class ShoppingListsActivity extends AppCompatActivity
                             db.addWooliesItem(wooliesList.get(i));
                         }
                     }
-                    else if(!colesData.isEmpty())
+
+                    if(!colesData.isEmpty())
                     {
                         List<ItemData> colesList = colesData.getShoppingList();
 
@@ -102,22 +126,16 @@ public class ShoppingListsActivity extends AppCompatActivity
                             db.addColesItem(colesList.get(i));
                         }
                     }
+
+                    text = "Shopping Lists successfully saved!";
                 }
                 else
                 {
-                    String text = "ERROR: No shopping lists created yet...";
-                    Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-                    toast.show();
+                    text = "ERROR: No shopping lists created yet...";
                 }
-            }
-        });
 
-        loadLists.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-
+                Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
     }

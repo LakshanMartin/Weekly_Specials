@@ -11,8 +11,7 @@ public class ColesListSingleton
 
     private ColesListSingleton()
     {
-        shoppingList = new ArrayList<>();
-        this.totalCost = 0.0;
+        freshList();
     }
 
     public static ColesListSingleton getInstance()
@@ -49,6 +48,12 @@ public class ColesListSingleton
         this.totalCost -= oldItemCost * oldItemQty;
 
         shoppingList.remove(oldItemPosition);
+    }
+
+    public void freshList()
+    {
+        shoppingList = new ArrayList<>();
+        this.totalCost = 0.0;
     }
 
     public boolean isEmpty()

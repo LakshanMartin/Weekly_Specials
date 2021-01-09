@@ -7,14 +7,11 @@ public class WooliesListSingleton
 {
     private static WooliesListSingleton instance = null;
     private List<ItemData> shoppingList;
-    private int item_ID;
     private double totalCost;
 
     private WooliesListSingleton()
     {
-        shoppingList = new ArrayList<>();
-        this.item_ID = 0;
-        this.totalCost = 0.0;
+        freshList();
     }
 
     public static WooliesListSingleton getInstance()
@@ -51,6 +48,12 @@ public class WooliesListSingleton
         this.totalCost -= oldItemCost * oldItemQty;
 
         shoppingList.remove(oldItemPosition);
+    }
+
+    public void freshList()
+    {
+        shoppingList = new ArrayList<>();
+        this.totalCost = 0.0;
     }
 
     public boolean isEmpty()

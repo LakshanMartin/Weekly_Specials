@@ -2,6 +2,7 @@ package curtin.edu.au.weeklyspecials.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class ShoppingListDb
     private List<ItemData> colesList;
     private SQLiteDatabase db;
 
-    public void load(Context context)
+    public void open(Context context)
     {
         //Open database
         this.db = new ShoppingListDbHelper(context.getApplicationContext())
@@ -42,47 +43,47 @@ public class ShoppingListDb
         db.insert(ListTable.COLES, null, cv);
     }
 
-    public void removeWooliesItem(ItemData item)
+    public Cursor fetchWoolies()
     {
-        String[] whereValue = {item.getDesc()};
+        Cursor cursor = db.query(
+                ListTable.WOOLIES,
+                getColumns(),
+                null,
+                null,
+                null,
+                null,
+                null);
 
-        db.delete(ListTable.WOOLIES,
-                ListTable.Cols.DESC + " = ?", whereValue);
+        return cursor;
     }
 
-    public void removeColesItem(ItemData item)
+    public Cursor fetchColes()
     {
-        String[] whereValue = {item.getDesc()};
+        Cursor cursor = db.query(
+                ListTable.COLES,
+                getColumns(),
+                null,
+                null,
+                null,
+                null,
+                null);
 
-        db.delete(ListTable.COLES,
-                ListTable.Cols.DESC + " = ?", whereValue);
+        return cursor;
     }
 
-    public void updateWooliesItem(ItemData item)
+    private String[] getColumns()
     {
-        ContentValues cv = new ContentValues();
-        cv.put(ListTable.Cols.DESC, item.getDesc());
-        cv.put(ListTable.Cols.COST, item.getCost());
-        cv.put(ListTable.Cols.QTY, item.getQty());
+        String[] columns = new String[] {
+                ListTable.Cols.DESC,
+                ListTable.Cols.COST,
+                ListTable.Cols.QTY };
 
-        String[] whereValue = {item.getDesc()};
-
-        db.update(ListTable.WOOLIES, cv,
-                ListTable.Cols.DESC + " = ?", whereValue);
+        return columns;
     }
 
-    public void updateColesItem(ItemData item)
+    public void deleteRecords()
     {
-        ContentValues cv = new ContentValues();
-        cv.put(ListTable.Cols.DESC, item.getDesc());
-        cv.put(ListTable.Cols.COST, item.getCost());
-        cv.put(ListTable.Cols.QTY, item.getQty());
-
-        String[] whereValue = {item.getDesc()};
-
-        db.update(ListTable.COLES, cv,
-                ListTable.Cols.DESC + " = ?", whereValue);
+        db.execSQL("delete from " + ListTable.WOOLIES);
+        db.execSQL("delete from " + ListTable.COLES);
     }
-
-
 }
