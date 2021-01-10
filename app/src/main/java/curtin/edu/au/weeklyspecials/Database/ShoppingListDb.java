@@ -81,9 +81,13 @@ public class ShoppingListDb
         return columns;
     }
 
-    public void deleteRecords()
+    public void deleteWoolies()
     {
         db.execSQL("delete from " + ListTable.WOOLIES);
+    }
+
+    public void deleteColes()
+    {
         db.execSQL("delete from " + ListTable.COLES);
     }
 }

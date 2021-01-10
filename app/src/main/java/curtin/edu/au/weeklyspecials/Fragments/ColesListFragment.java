@@ -1,5 +1,6 @@
 package curtin.edu.au.weeklyspecials.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,19 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
 
 import curtin.edu.au.weeklyspecials.Data.ColesListSingleton;
 import curtin.edu.au.weeklyspecials.Data.ItemData;
+import curtin.edu.au.weeklyspecials.Database.ShoppingListDb;
 import curtin.edu.au.weeklyspecials.R;
+import curtin.edu.au.weeklyspecials.ShoppingListsActivity;
 
 
 public class ColesListFragment extends Fragment
 {
     //RETRIEVE shopping list
     private ColesListSingleton colesList = ColesListSingleton.getInstance();
+    private ShoppingListDb db = new ShoppingListDb();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,11 +36,37 @@ public class ColesListFragment extends Fragment
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_coles_list, container, false);
 
+        //Open database
+        db.open(getActivity());
+
         //Initialise Total Cost value
         TextView txtVTotalCost = (TextView)view.findViewById(R.id.txtVTotalCost);
         String totalCost = getActivity().getResources().getString(
                 R.string.total_cost, colesList.getTotalCost());
         txtVTotalCost.setText(totalCost);
+
+
+        //Initialise Clear list button
+        ImageButton clearList = (ImageButton)view.findViewById(R.id.imgBClearList);
+        clearList.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //Clear database and existing list
+                db.deleteColes();
+                colesList.freshList();
+
+                //Refresh activity with clean database table and fresh list
+                getActivity().finish();
+
+                Intent intent = new Intent(getActivity(), ShoppingListsActivity.class);
+                intent.putExtra("LIST_ID", 1);
+
+                startActivity(intent);
+            }
+        });
+
 
         buildRecyclerView(view);
 

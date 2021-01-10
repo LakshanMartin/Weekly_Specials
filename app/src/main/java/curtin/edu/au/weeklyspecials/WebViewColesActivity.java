@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import curtin.edu.au.weeklyspecials.Data.ColesListSingleton;
 import curtin.edu.au.weeklyspecials.Data.ItemData;
+import curtin.edu.au.weeklyspecials.Database.ShoppingListDb;
 
 public class WebViewColesActivity extends AppCompatActivity
 {
@@ -24,6 +25,7 @@ public class WebViewColesActivity extends AppCompatActivity
     private WebView webView;
     private EditText itemDesc, itemCost, itemQty;
     private ColesListSingleton shoppingList = ColesListSingleton.getInstance();
+    private ShoppingListDb db = new ShoppingListDb();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +43,9 @@ public class WebViewColesActivity extends AppCompatActivity
 
         Log.d(TAG, toSearch);
         Log.d(TAG, String.valueOf(checkSpecials));
+
+        //OPEN Database
+        db.open(this);
 
         //INSTANTIATE UI
         webView = (WebView)findViewById(R.id.webColesPage);
@@ -184,9 +189,15 @@ public class WebViewColesActivity extends AppCompatActivity
                         }
                     }
 
+                    //Add new item to shopping list
                     String desc = itemDesc.getText().toString();
-                    shoppingList.addItem(new ItemData(desc, cost, qty));
+                    ItemData newItem = new ItemData(desc, cost, qty);
+                    shoppingList.addItem(newItem);
                     itemDesc.setText(null);
+
+                    //Add new item to database
+                    db.addColesItem(newItem);
+
                     text = "SUCCESS: Item added to list";
                 }
                 else
@@ -199,8 +210,6 @@ public class WebViewColesActivity extends AppCompatActivity
             }
         });
     }
-
-
 
     @Override
     public void onBackPressed()
