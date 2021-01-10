@@ -25,6 +25,9 @@ import curtin.edu.au.weeklyspecials.ShoppingListsActivity;
 
 public class WooliesListFragment extends Fragment
 {
+    private TextView txtVTotalCost;
+    private MyAdapter adapter;
+
     //RETRIEVE shopping list
     private WooliesListSingleton wooliesList = WooliesListSingleton.getInstance();
     private ShoppingListDb db = new ShoppingListDb();
@@ -40,10 +43,8 @@ public class WooliesListFragment extends Fragment
         db.open(getActivity());
 
         //Initialise Total Cost value
-        TextView txtVTotalCost = (TextView)view.findViewById(R.id.txtVTotalCost);
-        String totalCost = getActivity().getResources().getString(
-                R.string.total_cost, wooliesList.getTotalCost());
-        txtVTotalCost.setText(totalCost);
+        txtVTotalCost = (TextView)view.findViewById(R.id.txtVTotalCost);
+        updateTotalCost();
 
         //Initialise Clear list button
         ImageButton clearList = (ImageButton)view.findViewById(R.id.imgBClearList);
@@ -80,7 +81,7 @@ public class WooliesListFragment extends Fragment
         rv.setLayoutManager(new GridLayoutManager(getActivity(), 1,
                 RecyclerView.VERTICAL, false));
 
-        MyAdapter adapter = new MyAdapter(wooliesList.getShoppingList());
+        adapter = new MyAdapter(wooliesList.getShoppingList());
         rv.setAdapter(adapter);
     }
 
@@ -88,6 +89,7 @@ public class WooliesListFragment extends Fragment
     private class ItemDataVHolder extends RecyclerView.ViewHolder
     {
         private TextView txtVDesc, txtVCost, txtVQty;
+        private ImageButton imgBDelete;
 
         public ItemDataVHolder(LayoutInflater inflater, ViewGroup parent)
         {
@@ -95,6 +97,29 @@ public class WooliesListFragment extends Fragment
             txtVDesc = (TextView)itemView.findViewById(R.id.txtVDesc);
             txtVCost = (TextView)itemView.findViewById(R.id.txtVCost);
             txtVQty = (TextView)itemView.findViewById(R.id.txtVQty);
+            imgBDelete = (ImageButton)itemView.findViewById(R.id.imgBDelete);
+
+            imgBDelete.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    int itemPosition = getAbsoluteAdapterPosition();
+                    ItemData toDelete = wooliesList.getShoppingList().get(itemPosition);
+
+                    //Remove from database
+                    db.removeWooliesItem(toDelete);
+
+                    //Remove from shopping list
+                    wooliesList.removeItem(itemPosition);
+
+                    //Refresh recycler view
+                    adapter.notifyDataSetChanged();
+
+                    //Reset Shopping list Total Cost
+                    updateTotalCost();
+                }
+            });
         }
 
         public void bind(ItemData itemData, int position)
@@ -134,5 +159,12 @@ public class WooliesListFragment extends Fragment
         {
             return itemList.size();
         }
+    }
+
+    private void updateTotalCost()
+    {
+        String totalCost = getActivity().getResources().getString(
+                R.string.total_cost, wooliesList.getTotalCost());
+        txtVTotalCost.setText(totalCost);
     }
 }

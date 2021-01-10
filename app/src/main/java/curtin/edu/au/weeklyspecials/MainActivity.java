@@ -112,8 +112,15 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(MainActivity.this,
                             ShoppingListsActivity.class);
 
-                    //Defaults to the Woolies list tab first
-                    intent.putExtra("LIST_ID", 0);
+                    //Defaults to the Coles list tab if Woolies list is empty
+                    if(wooliesList.getShoppingList().isEmpty())
+                    {
+                        intent.putExtra("LIST_ID", 1);
+                    }
+                    else
+                    {
+                        intent.putExtra("LIST_ID", 0);
+                    }
 
                     startActivity(intent);
                 }

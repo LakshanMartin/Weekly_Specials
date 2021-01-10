@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.65"/>
+        app:layout_constraintWidth_percent="0.55"/>
 
     <TextView
         android:id="@+id/txtVHeadingCost"
@@ -37,7 +37,6 @@
         android:text="@string/qty"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/txtVHeadingCost"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"

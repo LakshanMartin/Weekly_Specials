@@ -33,6 +33,18 @@ public class ShoppingListDb
         db.insert(ListTable.WOOLIES, null, cv);
     }
 
+    public void removeWooliesItem(ItemData item)
+    {
+        db.execSQL("delete from " + ListTable.WOOLIES +
+                " where " + ListTable.Cols.DESC + "='" + item.getDesc() + "'");
+    }
+
+    public void removeColesItem(ItemData item)
+    {
+        db.execSQL("delete from " + ListTable.COLES +
+                " where " + ListTable.Cols.DESC + "='" + item.getDesc() + "'");
+    }
+
     public void addColesItem(ItemData item)
     {
         ContentValues cv = new ContentValues();

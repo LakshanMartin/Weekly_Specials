@@ -25,6 +25,9 @@ import curtin.edu.au.weeklyspecials.ShoppingListsActivity;
 
 public class ColesListFragment extends Fragment
 {
+    private TextView txtVTotalCost;
+    private MyAdapter adapter;
+
     //RETRIEVE shopping list
     private ColesListSingleton colesList = ColesListSingleton.getInstance();
     private ShoppingListDb db = new ShoppingListDb();
@@ -40,10 +43,8 @@ public class ColesListFragment extends Fragment
         db.open(getActivity());
 
         //Initialise Total Cost value
-        TextView txtVTotalCost = (TextView)view.findViewById(R.id.txtVTotalCost);
-        String totalCost = getActivity().getResources().getString(
-                R.string.total_cost, colesList.getTotalCost());
-        txtVTotalCost.setText(totalCost);
+        txtVTotalCost = (TextView)view.findViewById(R.id.txtVTotalCost);
+        updateTotalCost();
 
 
         //Initialise Clear list button
@@ -82,7 +83,7 @@ public class ColesListFragment extends Fragment
         rv.setLayoutManager(new GridLayoutManager(getActivity(), 1,
                 RecyclerView.VERTICAL, false));
 
-        ColesListFragment.MyAdapter adapter = new ColesListFragment.MyAdapter(colesList.getShoppingList());
+        adapter = new ColesListFragment.MyAdapter(colesList.getShoppingList());
         rv.setAdapter(adapter);
     }
 
@@ -90,6 +91,8 @@ public class ColesListFragment extends Fragment
     private class ItemDataVHolder extends RecyclerView.ViewHolder
     {
         private TextView txtVDesc, txtVCost, txtVQty;
+        private ImageButton imgBDelete;
+
 
         public ItemDataVHolder(LayoutInflater inflater, ViewGroup parent)
         {
@@ -97,6 +100,29 @@ public class ColesListFragment extends Fragment
             txtVDesc = (TextView)itemView.findViewById(R.id.txtVDesc);
             txtVCost = (TextView)itemView.findViewById(R.id.txtVCost);
             txtVQty = (TextView)itemView.findViewById(R.id.txtVQty);
+            imgBDelete = (ImageButton)itemView.findViewById(R.id.imgBDelete);
+
+            imgBDelete.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    int itemPosition = getAbsoluteAdapterPosition();
+                    ItemData toDelete = colesList.getShoppingList().get(itemPosition);
+
+                    //Remove from database
+                    db.removeColesItem(toDelete);
+
+                    //Remove from shopping list
+                    colesList.removeItem(itemPosition);
+
+                    //Refresh recycler view
+                    adapter.notifyDataSetChanged();
+
+                    //Reset Shopping list Total Cost
+                    updateTotalCost();
+                }
+            });
         }
 
         public void bind(ItemData itemData, int position)
@@ -118,15 +144,15 @@ public class ColesListFragment extends Fragment
 
         @NonNull
         @Override
-        public ColesListFragment.ItemDataVHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+        public ItemDataVHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
         {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
 
-            return new ColesListFragment.ItemDataVHolder(inflater, parent);
+            return new ItemDataVHolder(inflater, parent);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ColesListFragment.ItemDataVHolder holder, int position)
+        public void onBindViewHolder(@NonNull ItemDataVHolder holder, int position)
         {
             holder.bind(itemList.get(position), position);
         }
@@ -136,5 +162,12 @@ public class ColesListFragment extends Fragment
         {
             return itemList.size();
         }
+    }
+
+    private void updateTotalCost()
+    {
+        String totalCost = getActivity().getResources().getString(
+                R.string.total_cost, colesList.getTotalCost());
+        txtVTotalCost.setText(totalCost);
     }
 }

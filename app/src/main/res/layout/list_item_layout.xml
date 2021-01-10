@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,33 +9,47 @@
         android:id="@+id/txtVDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.65"
         android:text="@string/item_description"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.55" />
 
     <TextView
         android:id="@+id/txtVCost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.20"
         android:text="@string/cost_optional"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtVDesc"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.20" />
 
     <TextView
         android:id="@+id/txtVQty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.15"
         android:text="@string/qty"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtVCost"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.15" />
+
+    <ImageButton
+        android:id="@+id/imgBDelete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtVQty"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
