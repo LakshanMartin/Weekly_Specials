@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -128,8 +129,16 @@ public class ColesListFragment extends Fragment
         public void bind(ItemData itemData, int position)
         {
             txtVDesc.setText(itemData.getDesc());
-            txtVCost.setText(itemData.getCost());
-            txtVQty.setText(itemData.getQty());
+
+            String cost = getActivity().getResources().getString(
+                    R.string.list_cost, itemData.getCost());
+            CharSequence styledCost = HtmlCompat.fromHtml(cost, HtmlCompat.FROM_HTML_MODE_LEGACY);
+            txtVCost.setText(styledCost);
+
+            String qty = getActivity().getResources().getString(
+                    R.string.list_qty, itemData.getQty());
+            CharSequence styledQty = HtmlCompat.fromHtml(qty, HtmlCompat.FROM_HTML_MODE_LEGACY);;
+            txtVQty.setText(styledQty);
         }
     }
 

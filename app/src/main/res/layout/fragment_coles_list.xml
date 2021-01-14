@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.ColesListFragment">
 
+    <!--
     <TextView
         android:id="@+id/txtVHeadingDesc"
         android:layout_width="0dp"
@@ -22,7 +23,7 @@
         android:id="@+id/txtVHeadingCost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/cost_optional"
+        android:text="@string/cost"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/txtVHeadingDesc"
@@ -41,6 +42,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.15" />
+       -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvColesList"
@@ -50,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVHeadingDesc"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView

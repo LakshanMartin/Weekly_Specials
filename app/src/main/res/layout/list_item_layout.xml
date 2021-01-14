@@ -11,45 +11,52 @@
         android:layout_height="wrap_content"
         android:text="@string/item_description"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.55" />
+        app:layout_constraintEnd_toStartOf="@+id/imgBDelete"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtVCost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/cost_optional"
+        android:text="@string/list_cost"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtVDesc"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.20" />
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVDesc"/>
 
     <TextView
         android:id="@+id/txtVQty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/qty"
+        android:text="@string/list_qty"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtVCost"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.15" />
+        app:layout_constraintWidth_percent="0.35"
+        app:layout_constraintTop_toBottomOf="@+id/txtVDesc"
+        app:layout_constraintStart_toEndOf="@+id/txtVCost"/>
 
     <ImageButton
         android:id="@+id/imgBDelete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtVQty"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.10" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVCost"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

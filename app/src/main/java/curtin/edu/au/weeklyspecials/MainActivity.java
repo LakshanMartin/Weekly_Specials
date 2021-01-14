@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity
         Button btnColes = (Button) findViewById(R.id.btnColesSearch);
         Button btnShoppingList = (Button)findViewById(R.id.btnViewList);
 
-        //OPEN Database
+        //OPEN Database clear lists and load data
         db.open(this);
+        wooliesList.freshList();
+        colesList.freshList();
         loadWooliesData();
         loadColesData();
 

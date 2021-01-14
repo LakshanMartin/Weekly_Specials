@@ -31,8 +31,11 @@ public class ColesListSingleton
         shoppingList.add(newItem);
 
         //Total cost calculations
-        newItemCost = Double.parseDouble(newItem.getCost());
-        newItemQty = Double.parseDouble(newItem.getQty());
+        //newItemCost = Double.parseDouble(newItem.getCost());
+        //newItemQty = Double.parseDouble(newItem.getQty());
+
+        newItemCost = newItem.getCost();
+        newItemQty = newItem.getQty();
         this.totalCost += newItemCost * newItemQty;
     }
 
@@ -42,8 +45,11 @@ public class ColesListSingleton
         double oldItemCost, oldItemQty;
 
         oldItem = shoppingList.get(oldItemPosition);
-        oldItemCost = Double.parseDouble(oldItem.getCost());
-        oldItemQty = Double.parseDouble(oldItem.getQty());
+        //oldItemCost = Double.parseDouble(oldItem.getCost());
+        //oldItemQty = Double.parseDouble(oldItem.getQty());
+
+        oldItemCost = oldItem.getCost();
+        oldItemQty = oldItem.getQty();
 
         this.totalCost -= oldItemCost * oldItemQty;
 

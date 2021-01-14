@@ -104,7 +104,7 @@ public class WebViewColesActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                if(shoppingList.getShoppingList().isEmpty())
+                /*if(shoppingList.getShoppingList().isEmpty())
                 {
                     String text = "ERROR: List is currently empty...";
                     Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
@@ -115,11 +115,19 @@ public class WebViewColesActivity extends AppCompatActivity
                     Intent intent = new Intent(WebViewColesActivity.this,
                             ShoppingListsActivity.class);
 
-                    //LIST_ID sets shopping list tab to position 0, which is the Coles tab
+                    //LIST_ID sets shopping list tab to position 1, which is the Coles tab
                     intent.putExtra("LIST_ID", 1);
 
                     startActivity(intent);
-                }
+                }*/
+
+                Intent intent = new Intent(WebViewColesActivity.this,
+                        ShoppingListsActivity.class);
+
+                //LIST_ID sets shopping list tab to position 1, which is the Coles tab
+                intent.putExtra("LIST_ID", 1);
+
+                startActivity(intent);
             }
         });
 

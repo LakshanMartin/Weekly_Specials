@@ -19,8 +19,8 @@
     <string name="enter_item">Enter item description</string>
     <string name="add_to_list">+</string>
     <string name="return_to_main_screen">Return to Main Screen</string>
-    <string name="cost_optional">Cost</string>
-    <string name="qty">Qty</string>
+    <string name="list_cost">&lt;b>Cost:&lt;/b> $%.2f</string>
+    <string name="list_qty">&lt;b>Qty:&lt;/b> %d</string>
     <string name="shopping_lists">Shopping Lists</string>
     <string name="woolies_list">Woolies List</string>
     <string name="coles_list">Coles List</string>
@@ -29,4 +29,6 @@
     <string name="save_shopping_lists">Save Lists</string>
     <string name="load_shopping_lists">Load Lists</string>
     <string name="clear_list">Clear Lists</string>
+    <string name="edit_cost">Cost</string>
+    <string name="edit_qty">Qty</string>
 </resources>
