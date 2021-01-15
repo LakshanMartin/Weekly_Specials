@@ -5,6 +5,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -15,6 +17,7 @@ public class ShoppingListsActivity extends AppCompatActivity
 {
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ImageButton imgBEmail, imgBSMS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,6 +29,8 @@ public class ShoppingListsActivity extends AppCompatActivity
         TabItem wooliesTab = findViewById(R.id.wooliesTab);
         TabItem colesTab = findViewById(R.id.colesTab);
         viewPager = findViewById(R.id.viewPager);
+        imgBEmail = (ImageButton) findViewById(R.id.imgBEmail);
+        imgBSMS = (ImageButton) findViewById(R.id.imgBSMS);
 
         PagerAdapter pagerAdapter =
                 new PagerAdapter(getSupportFragmentManager(),
@@ -57,6 +62,16 @@ public class ShoppingListsActivity extends AppCompatActivity
             public void onTabReselected(TabLayout.Tab tab)
             {
 
+            }
+        });
+
+        imgBEmail.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(ShoppingListsActivity.this, EmailListActivity.class);
+                startActivity(intent);
             }
         });
     }

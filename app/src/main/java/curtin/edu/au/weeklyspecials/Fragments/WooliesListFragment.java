@@ -1,5 +1,7 @@
 package curtin.edu.au.weeklyspecials.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -117,7 +121,7 @@ public class WooliesListFragment extends Fragment
     private class ItemDataVHolder extends RecyclerView.ViewHolder
     {
         private TextView txtVDesc, txtVCost, txtVQty;
-        private ImageButton imgBDelete;
+        private ImageButton imgBEditItem, imgBDelete;
 
         public ItemDataVHolder(LayoutInflater inflater, ViewGroup parent)
         {
@@ -125,7 +129,55 @@ public class WooliesListFragment extends Fragment
             txtVDesc = (TextView)itemView.findViewById(R.id.txtVDesc);
             txtVCost = (TextView)itemView.findViewById(R.id.txtVCost);
             txtVQty = (TextView)itemView.findViewById(R.id.txtVQty);
+            imgBEditItem = (ImageButton)itemView.findViewById(R.id.imgBEditItem);
             imgBDelete = (ImageButton)itemView.findViewById(R.id.imgBDelete);
+
+            /*imgBEditItem.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+
+                    final View customLayout = getLayoutInflater().inflate(R.layout.edit_item_layout, null);
+
+                    //INSTANTIATE new layout
+                    final EditText popupDesc = (EditText)customLayout.findViewById(R.id.popupDesc);
+                    final EditText popupCost = (EditText)customLayout.findViewById(R.id.popupCost);
+                    final EditText popupQty = (EditText)customLayout.findViewById(R.id.popupQty);
+
+                    builder.setView(customLayout);
+
+                    builder.setTitle("Edit Item Details");
+
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i)
+                        {
+                            int itemPosition = getAbsoluteAdapterPosition();
+                            ItemData toEdit = wooliesList.getShoppingList().get(itemPosition);
+
+                            popupDesc.setText("Hello");
+                            Log.d("Desc", toEdit.getDesc());
+                            popupCost.setText(Double.toString(toEdit.getCost()));
+
+                            popupQty.setText(toEdit.getQty());
+                        }
+                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i)
+                        {
+                            dialogInterface.cancel();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });*/
 
             imgBDelete.setOnClickListener(new View.OnClickListener()
             {

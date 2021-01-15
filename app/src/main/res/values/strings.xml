@@ -31,4 +31,8 @@
     <string name="clear_list">Clear Lists</string>
     <string name="edit_cost">Cost</string>
     <string name="edit_qty">Qty</string>
+    <string name="to">To:</string>
+    <string name="subject">Subject:</string>
+    <string name="message">Message:</string>
+    <string name="send">Send</string>
 </resources>
