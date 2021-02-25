@@ -31,4 +31,20 @@ public class ItemData
         return qty;
         //return Integer.toString(qty);
     }
+
+    //SETTERS
+    public void setDesc(String inDesc)
+    {
+        this.desc = inDesc;
+    }
+
+    public void setCost(String inCost)
+    {
+        this.cost = Double.parseDouble(inCost);
+    }
+
+    public void setQty(String inQty)
+    {
+        this.qty = Integer.parseInt(inQty);
+    }
 }

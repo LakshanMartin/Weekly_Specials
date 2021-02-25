@@ -20,6 +20,7 @@ import java.util.List;
 import curtin.edu.au.weeklyspecials.Data.ColesListSingleton;
 import curtin.edu.au.weeklyspecials.Data.ItemData;
 import curtin.edu.au.weeklyspecials.Database.ShoppingListDb;
+import curtin.edu.au.weeklyspecials.Helpers.EditItemDialog;
 import curtin.edu.au.weeklyspecials.R;
 import curtin.edu.au.weeklyspecials.ShoppingListsActivity;
 
@@ -92,7 +93,7 @@ public class ColesListFragment extends Fragment
     private class ItemDataVHolder extends RecyclerView.ViewHolder
     {
         private TextView txtVDesc, txtVCost, txtVQty;
-        private ImageButton imgBDelete;
+        private ImageButton imgBDelete, imgBEditItem;
 
 
         public ItemDataVHolder(LayoutInflater inflater, ViewGroup parent)
@@ -102,6 +103,7 @@ public class ColesListFragment extends Fragment
             txtVCost = (TextView)itemView.findViewById(R.id.txtVCost);
             txtVQty = (TextView)itemView.findViewById(R.id.txtVQty);
             imgBDelete = (ImageButton)itemView.findViewById(R.id.imgBDelete);
+            imgBEditItem = (ImageButton)itemView.findViewById(R.id.imgBEditItem);
 
             imgBDelete.setOnClickListener(new View.OnClickListener()
             {
@@ -116,6 +118,36 @@ public class ColesListFragment extends Fragment
 
                     //Remove from shopping list
                     colesList.removeItem(itemPosition);
+
+                    //Refresh recycler view
+                    adapter.notifyDataSetChanged();
+
+                    //Reset Shopping list Total Cost
+                    updateTotalCost();
+                }
+            });
+
+            imgBEditItem.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    int itemPosition = getAbsoluteAdapterPosition();
+                    ItemData toEdit = colesList.getShoppingList().get(itemPosition);
+                    ItemData updatedData = colesList.getUpdatedItem();
+
+                    openDialog(toEdit);
+
+                    //Update item in list
+                    //colesList.updateItem(itemPosition);
+
+                    toEdit.setDesc(updatedData.getDesc());
+                    toEdit.setCost(String.valueOf(updatedData.getCost()));
+                    toEdit.setQty(String.valueOf(updatedData.getQty()));
+                    /*
+                    toEdit.setDesc("poo");
+                    toEdit.setCost("1.5");
+                    toEdit.setQty("3"); */
 
                     //Refresh recycler view
                     adapter.notifyDataSetChanged();
@@ -178,5 +210,11 @@ public class ColesListFragment extends Fragment
         String totalCost = getActivity().getResources().getString(
                 R.string.total_cost, colesList.getTotalCost());
         txtVTotalCost.setText(totalCost);
+    }
+
+    private void openDialog(ItemData toEdit)
+    {
+        EditItemDialog dialog = new EditItemDialog(toEdit);
+        dialog.show(getFragmentManager(), "example dialog");
     }
 }

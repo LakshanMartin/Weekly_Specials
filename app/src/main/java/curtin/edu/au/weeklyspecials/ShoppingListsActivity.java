@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
+import curtin.edu.au.weeklyspecials.Helpers.EditItemDialog;
 import curtin.edu.au.weeklyspecials.Helpers.PagerAdapter;
 
 public class ShoppingListsActivity extends AppCompatActivity
@@ -71,6 +72,16 @@ public class ShoppingListsActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent intent = new Intent(ShoppingListsActivity.this, EmailListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imgBSMS.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(ShoppingListsActivity.this, SMSListActivity.class);
                 startActivity(intent);
             }
         });

@@ -8,6 +8,7 @@ public class ColesListSingleton
     private static ColesListSingleton instance = null;
     private List<ItemData> shoppingList;
     private double totalCost;
+    private ItemData updatedItem;
 
     private ColesListSingleton()
     {
@@ -56,6 +57,16 @@ public class ColesListSingleton
         shoppingList.remove(oldItemPosition);
     }
 
+    public void editItem(String desc, String cost, String qty)
+    {
+        updatedItem = new ItemData(desc, Double.parseDouble(cost), Integer.parseInt(qty));
+    }
+
+    public void updateItem(int itemPosition)
+    {
+        shoppingList.set(itemPosition, updatedItem);
+    }
+
     public void freshList()
     {
         shoppingList = new ArrayList<>();
@@ -77,6 +88,11 @@ public class ColesListSingleton
     public List<ItemData> getShoppingList()
     {
         return shoppingList;
+    }
+
+    public ItemData getUpdatedItem()
+    {
+        return updatedItem;
     }
 
     public double getTotalCost()

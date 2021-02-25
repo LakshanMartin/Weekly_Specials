@@ -45,7 +45,7 @@ public class EmailListActivity extends AppCompatActivity
         String recipientList = editTRecipient.getText().toString();
         String[] recipients = recipientList.split(",");
 
-        String subject = editTSubject.getText().toString();
+        String subject = "WEEKLY SPECIALS: " + editTSubject.getText().toString();
         StringBuilder message = new StringBuilder(editTMessage.getText().toString() + "\n\n");
         message.append(getWooliesList());
         message.append(getColesList());
@@ -65,19 +65,28 @@ public class EmailListActivity extends AppCompatActivity
     {
         WooliesListSingleton data = WooliesListSingleton.getInstance();
         List<ItemData> list = data.getShoppingList();
-        StringBuilder fullList = new StringBuilder("Woolies List:\n");
+        StringBuilder fullList;
 
-        for(int i = 0; i < list.size(); i++)
+        if(!list.isEmpty())
         {
-            ItemData item = list.get(i);
-            fullList.append(item.getDesc() + "\n");
-            String cost = String.format("%.2f", item.getCost());
-            fullList.append("Cost: $" + cost + "\n");
-            fullList.append("Qty: " + item.getQty() + "\n\n");
-        }
+            fullList = new StringBuilder("Woolies List:\n");
 
-        String totalCost = String.format("%.2f", data.getTotalCost());
-        fullList.append("Woolies Total Cost: $" + totalCost + "\n\n\n");
+            for(int i = 0; i < list.size(); i++)
+            {
+                ItemData item = list.get(i);
+                fullList.append(item.getDesc() + "\n");
+                String cost = String.format("%.2f", item.getCost());
+                fullList.append("Cost: $" + cost + "\n");
+                fullList.append("Qty: " + item.getQty() + "\n\n");
+            }
+
+            String totalCost = String.format("%.2f", data.getTotalCost());
+            fullList.append("Woolies Total Cost: $" + totalCost + "\n\n\n");
+        }
+        else
+        {
+            fullList = new StringBuilder("");
+        }
 
         return fullList.toString();
     }
@@ -86,19 +95,28 @@ public class EmailListActivity extends AppCompatActivity
     {
         ColesListSingleton data = ColesListSingleton.getInstance();
         List<ItemData> list = data.getShoppingList();
-        StringBuilder fullList = new StringBuilder("Coles List:\n");
+        StringBuilder fullList;
 
-        for(int i = 0; i < list.size(); i++)
+        if(!list.isEmpty())
         {
-            ItemData item = list.get(i);
-            fullList.append(item.getDesc() + "\n");
-            String cost = String.format("%.2f", item.getCost());
-            fullList.append("Cost: $" + cost + "\n");
-            fullList.append("Qty: " + item.getQty() + "\n\n");
-        }
+            fullList = new StringBuilder("Coles List:\n");
 
-        String totalCost = String.format("%.2f", data.getTotalCost());
-        fullList.append("Coles Total Cost: $" + totalCost + "\n\n\n");
+            for(int i = 0; i < list.size(); i++)
+            {
+                ItemData item = list.get(i);
+                fullList.append(item.getDesc() + "\n");
+                String cost = String.format("%.2f", item.getCost());
+                fullList.append("Cost: $" + cost + "\n");
+                fullList.append("Qty: " + item.getQty() + "\n\n");
+            }
+
+            String totalCost = String.format("%.2f", data.getTotalCost());
+            fullList.append("Coles Total Cost: $" + totalCost + "\n\n\n");
+        }
+        else
+        {
+            fullList = new StringBuilder("");
+        }
 
         return fullList.toString();
     }

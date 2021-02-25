@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="15dp">
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/popupDesc"
@@ -30,9 +30,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="number"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.50"
         app:layout_constraintStart_toEndOf="@+id/popupCost"
-        app:layout_constraintTop_toBottomOf="@+id/popupDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/popupDesc"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.50" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

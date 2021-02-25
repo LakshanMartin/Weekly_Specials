@@ -5,78 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".EmailListActivity">
+    tools:context=".SMSListActivity">
 
     <TextView
-        android:id="@+id/txtVRecipient"
+        android:id="@+id/txtVSMSRecipient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/to"
+        android:text="Enter phone number:"
         android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTRecipient"
+        android:id="@+id/editTSMSRecipient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         android:imeOptions="actionNext"
-        app:layout_constraintTop_toBottomOf="@+id/txtVRecipient"
+        app:layout_constraintTop_toBottomOf="@+id/txtVSMSRecipient"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="5dp"/>
 
     <TextView
-        android:id="@+id/txtVSubject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/subject"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTRecipient"
-        android:layout_marginTop="5dp"/>
-
-    <EditText
-        android:id="@+id/editTSubject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailSubject"
-        android:imeOptions="actionNext"
-        app:layout_constraintTop_toBottomOf="@+id/txtVSubject"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="5dp"/>
-
-    <TextView
-        android:id="@+id/txtVMessage"
+        android:id="@+id/txtVSMSMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/message"
         android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTSubject"
+        app:layout_constraintTop_toBottomOf="@+id/editTSMSRecipient"
         android:layout_marginTop="5dp"/>
 
     <EditText
-        android:id="@+id/editTMessage"
+        android:id="@+id/editTSMSMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="10"
         android:gravity="start|top"
         android:imeOptions="actionDone"
-        app:layout_constraintTop_toBottomOf="@+id/txtVMessage"
+        app:layout_constraintTop_toBottomOf="@+id/txtVSMSMessage"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="5dp"/>
 
     <Button
-        android:id="@+id/btnSendEmail"
+        android:id="@+id/btnSendSMS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/send"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

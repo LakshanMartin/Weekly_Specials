@@ -49,7 +49,8 @@
         android:src="@android:drawable/ic_menu_edit"
         app:layout_constraintBottom_toTopOf="@+id/imgBDelete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/imgBDelete"
