@@ -24,7 +24,7 @@
         android:gravity="center_horizontal"
         android:hint="@string/enter_item"
         android:imeOptions="actionNext"
-        android:inputType="text"
+        android:inputType="text|textCapSentences|textAutoCorrect"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/btnOtherShop"
         app:layout_constraintEnd_toStartOf="@+id/editTItemCost"
