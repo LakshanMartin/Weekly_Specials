@@ -13,7 +13,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txtVCost"
-        app:layout_constraintEnd_toStartOf="@+id/imgBEditItem"
+        app:layout_constraintEnd_toStartOf="@+id/imgBDelete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
